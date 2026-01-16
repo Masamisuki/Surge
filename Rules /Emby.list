@@ -1,7 +1,6 @@
 # 规则名称: Emby
-# 规则统计: 7
+# 规则统计: 6
 
-DOMAIN,cdn.lilyemby.com
 DOMAIN,www.lilyemby.com
 DOMAIN,tx.lilyemby.com
 DOMAIN,aliyun.lilyemby.com
