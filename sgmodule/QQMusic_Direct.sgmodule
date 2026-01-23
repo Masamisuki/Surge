@@ -3,6 +3,6 @@
 
 [Rule]
 # 强制将指定的统计域名设为直连
-DOMAIN,stat6.y.qq.com,DIRECT,pre-matching
-DOMAIN,stat.y.qq.com,DIRECT,pre-matching
+DOMAIN,stat6.y.qq.com,DIRECT,no-resolve
+DOMAIN,stat.y.qq.com,DIRECT,no-resolve
 
