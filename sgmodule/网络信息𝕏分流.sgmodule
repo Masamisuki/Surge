@@ -1,0 +1,11 @@
+#!name=网络信息𝕏分流规则
+#!desc=针对 ip.sb, ip-api.com 设置代理，speedtest.cn 设置直连。
+#!category=分流修正
+
+[Rule]
+# 代理域名
+DOMAIN-SUFFIX,ip.sb,Proxy
+DOMAIN-SUFFIX,ip-api.com,Proxy
+# 直连域名
+DOMAIN-SUFFIX,speedtest.cn,DIRECT
+
