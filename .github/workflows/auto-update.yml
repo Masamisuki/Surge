@@ -2,7 +2,7 @@ name: Update 广告平台拦截器.sgmodule
 
 on:
   schedule:
-    - cron: "0 */6 * * *"   # 每 6 小时检查一次
+    - cron: "0 16 * * *"   # 每天 00:00（北京时间）
   workflow_dispatch:
 
 jobs:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Download upstream sgmodule
@@ -19,19 +19,20 @@ jobs:
           https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/广告平台拦截器.sgmodule \
           -o /tmp/广告平台拦截器.sgmodule
 
-      - name: Remove stat.y.qq.com and stat6.y.qq.com
+      - name: Process sgmodule (remove QQ stat domains)
         run: |
+          mkdir -p sgmodule
           grep -v -E 'stat\.y\.qq\.com|stat6\.y\.qq\.com' \
-          /tmp/广告平台拦截器.sgmodule \
-          > sgmodule/广告平台拦截器.sgmodule
+            /tmp/广告平台拦截器.sgmodule \
+            > sgmodule/广告平台拦截器.sgmodule
 
       - name: Commit and push if changed
         run: |
           if git diff --quiet; then
-            echo "No changes."
+            echo "No changes detected."
           else
-            git config user.name "github-actions"
-            git config user.email "github-actions@github.com"
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
             git add sgmodule/广告平台拦截器.sgmodule
             git commit -m "chore: 自动更新 广告平台拦截器.sgmodule（移除 QQ 统计域名）"
             git push
