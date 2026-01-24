@@ -1,35 +1,38 @@
-name: Auto Update AdBlock Module
+name: Update 广告平台拦截器.sgmodule
 
 on:
   schedule:
-    - cron: '0 0 * * *' # 每天北京时间上午8点运行
-  workflow_dispatch:      # 支持手动触发
+    - cron: "0 */6 * * *"   # 每 6 小时检查一次
+  workflow_dispatch:
 
 jobs:
-  build:
+  update:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+
     steps:
-      - name: Checkout Code
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Download and Process
+      - name: Download upstream sgmodule
         run: |
-          # 1. 确保目录存在
-          mkdir -p sgmodule
-          
-          # 2. 从上游下载，并使用 sed 删除包含两条统计域名的行
-          curl -sSL "https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/广告平台拦截器.sgmodule" \
-          | sed '/stat\.y\.qq\.com/d' \
-          | sed '/stat6\.y\.qq\.com/d' \
+          curl -L \
+          https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/广告平台拦截器.sgmodule \
+          -o /tmp/广告平台拦截器.sgmodule
+
+      - name: Remove stat.y.qq.com and stat6.y.qq.com
+        run: |
+          grep -v -E 'stat\.y\.qq\.com|stat6\.y\.qq\.com' \
+          /tmp/广告平台拦截器.sgmodule \
           > sgmodule/广告平台拦截器.sgmodule
 
-      - name: Push Changes
+      - name: Commit and push if changed
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add sgmodule/广告平台拦截器.sgmodule
-          git commit -m "Auto update: sync with upstream and remove QQ Music stats" || exit 0
-          git push
-
+          if git diff --quiet; then
+            echo "No changes."
+          else
+            git config user.name "github-actions"
+            git config user.email "github-actions@github.com"
+            git add sgmodule/广告平台拦截器.sgmodule
+            git commit -m "chore: 自动更新 广告平台拦截器.sgmodule（移除 QQ 统计域名）"
+            git push
+          fi
