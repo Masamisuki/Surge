@@ -1,39 +1,32 @@
-name: Update 广告平台拦截器.sgmodule
+name: Update Surge Module
 
 on:
   schedule:
-    - cron: "0 16 * * *"   # 每天 00:00（北京时间）
-  workflow_dispatch:
+    - cron: '0 0 * * *' # 每天凌晨 12:00 自动执行
+  workflow_dispatch:      # 允许手动点击运行
 
 jobs:
   update:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-      - name: Download upstream sgmodule
+      - name: Download and Process Module
         run: |
-          curl -L \
-          https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/广告平台拦截器.sgmodule \
-          -o /tmp/广告平台拦截器.sgmodule
+          # 1. 下载上游文件
+          curl -sL "https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/广告平台拦截器.sgmodule" -o temp.sgmodule
+          
+          # 2. 过滤掉包含指定域名的行（使用 sed 删除匹配行）
+          # /stat\.y\.qq\.com/d 表示匹配该正则的行执行删除
+          sed '/stat\.y\.qq\.com/d; /stat6\.y\.qq\.com/d' temp.sgmodule > sgmodule/广告平台拦截器.sgmodule
+          
+          # 3. 清理临时文件
+          rm temp.sgmodule
 
-      - name: Process sgmodule (remove QQ stat domains)
+      - name: Commit and Push
         run: |
-          mkdir -p sgmodule
-          grep -v -E 'stat\.y\.qq\.com|stat6\.y\.qq\.com' \
-            /tmp/广告平台拦截器.sgmodule \
-            > sgmodule/广告平台拦截器.sgmodule
-
-      - name: Commit and push if changed
-        run: |
-          if git diff --quiet; then
-            echo "No changes detected."
-          else
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add sgmodule/广告平台拦截器.sgmodule
-            git commit -m "chore: 自动更新 广告平台拦截器.sgmodule（移除 QQ 统计域名）"
-            git push
-          fi
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add sgmodule/广告平台拦截器.sgmodule
+          git diff --quiet && git diff --staged --quiet || (git commit -m "自动更新：移除 QQ 音乐统计域名" && git push)
