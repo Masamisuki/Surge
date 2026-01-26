@@ -1,7 +1,0 @@
-#!name=QQ音乐统计直连补丁
-#!desc=将腾讯音乐统计域名设置为直连，防止因拦截导致的APP异常。
-
-[Rule]
-# 强制将指定的统计域名设为直连
-DOMAIN,stat6.y.qq.com,DIRECT
-DOMAIN,stat.y.qq.com,DIRECT
