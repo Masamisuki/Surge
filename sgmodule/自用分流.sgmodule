@@ -1,0 +1,40 @@
+#!name=📦 自用分流修正合集
+#!desc=个人自用分流规则：Emby 分流、网络信息𝕏分流、QQ 音乐统计直连
+#!author=粲
+#!category=分流修正
+#!arguments=proxy:Proxy
+#!arguments-desc=proxy:Emby 使用的代理策略组
+
+[Rule]
+# =========================
+# Emby 服务分流（使用模块参数 proxy）
+# =========================
+# LilyEmby CDN 直连线路
+DOMAIN,cdn.lilyemby.com,DIRECT
+# OkEmby
+DOMAIN,link00.okemby.org,{{{proxy}}}
+# nyamedia
+DOMAIN,emby.bangumi.ca,{{{proxy}}}
+# 墨云阁
+DOMAIN,m.mobaiemby.site,{{{proxy}}}
+# LilyEmby 主线路
+DOMAIN,www.lilyemby.com,{{{proxy}}}
+# LilyEmby 腾讯 CDN
+DOMAIN,tx.lilyemby.com,{{{proxy}}}
+# LilyEmby 阿里云 CDN
+DOMAIN,aliyun.lilyemby.com,{{{proxy}}}
+
+
+# =========================
+# 网络信息 / IP 查询（固定默认 Proxy）
+# =========================
+DOMAIN-SUFFIX,ip.sb,Proxy
+DOMAIN-SUFFIX,ip-api.com,Proxy
+DOMAIN-SUFFIX,speedtest.cn,DIRECT
+
+
+# =========================
+# QQ 音乐统计直连补丁
+# =========================
+DOMAIN,stat6.y.qq.com,DIRECT
+DOMAIN,stat.y.qq.com,DIRECT
