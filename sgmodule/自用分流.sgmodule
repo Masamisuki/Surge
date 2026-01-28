@@ -9,14 +9,10 @@
 # =========================
 # Emby 服务分流（使用模块参数 proxy）
 # =========================
-# LilyEmby CDN 直连线路
-DOMAIN,cdn.lilyemby.com,DIRECT
-# OkEmby
-DOMAIN,link00.okemby.org,{{{proxy}}}
-# nyamedia
-DOMAIN,emby.bangumi.ca,{{{proxy}}}
 # 墨云阁
 DOMAIN,m.mobaiemby.site,{{{proxy}}}
+# LilyEmby CDN 直连线路
+DOMAIN,cdn.lilyemby.com,DIRECT
 # LilyEmby 主线路
 DOMAIN,www.lilyemby.com,{{{proxy}}}
 # LilyEmby 腾讯 CDN
