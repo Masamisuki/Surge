@@ -22,11 +22,34 @@ DOMAIN,aliyun.lilyemby.com,{{{proxy}}}
 
 
 # =========================
-# 网络信息 / IP 查询（固定默认 Proxy）
+# 网络信息 / IP 查询
 # =========================
-DOMAIN-SUFFIX,ip.sb,Proxy
+# 国内直连 (DIRECT)
+DOMAIN-SUFFIX,cip.cc,DIRECT
+DOMAIN-SUFFIX,appc.qixin.com,DIRECT
+DOMAIN-SUFFIX,forge.speedtest.cn,DIRECT
+DOMAIN-SUFFIX,rmb.pingan.com.cn,DIRECT
+DOMAIN-SUFFIX,api-v3.speedtest.cn,DIRECT
+DOMAIN-SUFFIX,ipservice.ws.126.net,DIRECT
+DOMAIN-SUFFIX,api.bilibili.com,DIRECT
+DOMAIN-SUFFIX,api.live.bilibili.com,DIRECT
+DOMAIN-SUFFIX,myip.ipip.net,DIRECT
+DOMAIN-SUFFIX,ip.ip233.cn,DIRECT
+DOMAIN-SUFFIX,uapi.woobx.cn,DIRECT
+DOMAIN-SUFFIX,ip.im,DIRECT
+DOMAIN-SUFFIX,ips.market.alicloudapi.com,DIRECT
+DOMAIN-SUFFIX,api.ip.plus,DIRECT
+DOMAIN-SUFFIX,dashi.163.com,DIRECT
+DOMAIN-SUFFIX,qifu-api.baidubce.com,DIRECT
+DOMAIN-SUFFIX,api.zhuishushenqi.com,DIRECT
+DOMAIN-SUFFIX,admin-app.edifier.com,DIRECT
+
+# 国外代理 (Proxy)
+DOMAIN-SUFFIX,ipinfo.io,Proxy
+DOMAIN-SUFFIX,ip-score.com,Proxy
+DOMAIN-SUFFIX,ipwhois.app,Proxy
 DOMAIN-SUFFIX,ip-api.com,Proxy
-DOMAIN-SUFFIX,speedtest.cn,DIRECT
+DOMAIN-SUFFIX,api-ipv4.ip.sb,Proxy
 
 
 # =========================
