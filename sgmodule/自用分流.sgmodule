@@ -1,5 +1,5 @@
 #!name=📦 自用分流修正合集
-#!desc=个人自用分流规则：Emby 分流｜网络信息 / IP 查询｜QQ 音乐统计直连
+#!desc=Emby 分流｜IP 查询｜QQ 音乐统计直连｜Forward Widget Filter
 #!author=粲
 #!category=分流修正
 #!arguments=proxy:Proxy
