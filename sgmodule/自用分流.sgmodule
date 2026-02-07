@@ -11,6 +11,9 @@
 # =========================
 # 墨云阁
 DOMAIN,m.mobaiemby.site,{{{proxy}}}
+# OkEmby
+DOMAIN,link00.okemby.org,{{{proxy}}}
+DOMAIN,link01.okemby.org,{{{proxy}}}
 # LilyEmby CDN 直连线路
 DOMAIN,cdn.lilyemby.com,DIRECT
 # LilyEmby 主线路
